@@ -8,3 +8,10 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 8080:8080
+    volumes:
+      - railway_volume_name:/thread-volume
+      - railway_volume_mount_path:/movie
+
+volumes:
+  railway_volume_name:
+  railway_volume_mount_path:
