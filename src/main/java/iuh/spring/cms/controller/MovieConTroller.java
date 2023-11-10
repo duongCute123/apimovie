@@ -18,12 +18,13 @@ public class MovieConTroller {
 	
 	@GetMapping("/phim-sap-chieu/{currentPage}")
 	public ResponseEntity<String> searchMovie(@PathVariable String currentPage) {
-		String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/phim-sap-chieu.json?page="
-				+ currentPage + "&slug=phim-sap-chieu";
-		ResponseEntity<String> responsive = restTemplate.getForEntity(url, String.class);
-		return responsive;
+	    String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/phim-sap-chieu.json?page="
+	            + currentPage + "&slug=phim-sap-chieu";
+	    ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+	    return response;
 	}
 
+	
 	@GetMapping("/tvshow/{currentPage}")
 	public ResponseEntity<String> getTvShow(@PathVariable String currentPage) {
 		String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/tv-shows.json?page=" + currentPage
