@@ -1,4 +1,5 @@
 FROM eclipse-temurin:17-jre-focal
+VOLUME /movie
 ARG JAVA_OPTS
 ENV JAVA_OPTS=$JAVA_OPTS
 COPY target/ProxyServerAPI-0.0.1-SNAPSHOT.jar proxyserverapi.jar
