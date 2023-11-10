@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 public class MovieConTroller {
 	@Autowired
 	private RestTemplate restTemplate;
-
+	
 	@GetMapping("/phim-sap-chieu/{currentPage}")
 	public ResponseEntity<String> searchMovie(@PathVariable String currentPage) {
 		String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/phim-sap-chieu.json?page="
@@ -62,5 +62,9 @@ public class MovieConTroller {
 		ResponseEntity<String> responsive =restTemplate.getForEntity(url, String.class);
 		
 		return responsive;
+	}
+	@GetMapping("/hello")
+	public String getHello() {
+		return "Helllo";
 	}
 }
