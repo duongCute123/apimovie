@@ -56,8 +56,11 @@ public class MovieConTroller {
 		return resposive;
 	}
 
-	@GetMapping("/loai-phim/")
-	public ResponseEntity<String> getLoaiMovie() {
-		return null;
+	@GetMapping("/loai-phim/{categoeries}/{currentPage}")
+	public ResponseEntity<String> getLoaiMovie(@PathVariable String categoeries, @PathVariable String currentPage) {
+		String url="https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/the-loai/"+categoeries+".json?page="+currentPage+"&slug="+categoeries;
+		ResponseEntity<String> responsive =restTemplate.getForEntity(url, String.class);
+		
+		return responsive;
 	}
 }
