@@ -63,7 +63,7 @@ public class MovieConTroller {
 		
 		return responsive;
 	}
-	@GetMapping("/hello")
+	@GetMapping("")
 	public String getHello() {
 		return "Helllo";
 	}
