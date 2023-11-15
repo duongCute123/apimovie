@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -15,16 +16,15 @@ import org.springframework.web.client.RestTemplate;
 public class MovieConTroller {
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@GetMapping("/phim-sap-chieu/{currentPage}")
 	public ResponseEntity<String> searchMovie(@PathVariable String currentPage) {
-	    String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/phim-sap-chieu.json?page="
-	            + currentPage + "&slug=phim-sap-chieu";
-	    ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-	    return response;
+		String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/phim-sap-chieu.json?page="
+				+ currentPage + "&slug=phim-sap-chieu";
+		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+		return response;
 	}
 
-	
 	@GetMapping("/tvshow/{currentPage}")
 	public ResponseEntity<String> getTvShow(@PathVariable String currentPage) {
 		String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/danh-sach/tv-shows.json?page=" + currentPage
@@ -59,11 +59,20 @@ public class MovieConTroller {
 
 	@GetMapping("/loai-phim/{categoeries}/{currentPage}")
 	public ResponseEntity<String> getLoaiMovie(@PathVariable String categoeries, @PathVariable String currentPage) {
-		String url="https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/the-loai/"+categoeries+".json?page="+currentPage+"&slug="+categoeries;
-		ResponseEntity<String> responsive =restTemplate.getForEntity(url, String.class);
-		
+		String url = "https://ophim9.cc/_next/data/s4OlXy8jONoHVWAT5vg7b/the-loai/" + categoeries + ".json?page="
+				+ currentPage + "&slug=" + categoeries;
+		ResponseEntity<String> responsive = restTemplate.getForEntity(url, String.class);
+
 		return responsive;
 	}
+
+	@PostMapping("/data")
+	public ResponseEntity<String> getP() {
+		String url = "https://api.vieon.vn/backend/cm/v5/slug/ribbon?page=2&limit=50&platform=mobile_web&ui=012021";
+		ResponseEntity<String> responsive = restTemplate.postForEntity(url, null,String.class);
+		return responsive;
+	}
+
 	@GetMapping("")
 	public String getHello() {
 		return "Helllo";
