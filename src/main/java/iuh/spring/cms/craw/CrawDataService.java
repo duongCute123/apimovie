@@ -24,19 +24,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CrawDataService implements CrawData {
 
-    private Connection connection;
+    private final Connection connection;
+    @Value("${page.url}")
+    private String urlPage;
+    @Value("${page.url.root}")
+    private String urlRoot;
 
-    // @Value("${page.url}")
-    private String urlPage = "https://api.vieon.vn/backend/cm/v5/slug/ribbon?page/";
-    // @Value("${page.url.root}")
-    private String urlRoot = "https://vieon.vn/phim-hay/r/nghien-phim-trung-phim-bo";
-
-    // @Value("${page.total.number}")
-    private String elementCssPage = "10";
+    @Value("${page.total.number}")
+    private String elementCssPage;
 
     @Override
     public Integer getTotalElementPages() throws IOException {
-        System.out.println(this.connection);
         Elements elements = connection.getConnection(urlRoot).select(elementCssPage);
 
         return elements.stream().map(CrawDataService::convertToNumber).max(Comparator.comparing(Integer::valueOf))
